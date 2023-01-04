@@ -22,6 +22,8 @@ class Hand {
   stand() {
     if (this.isHandValid) {
       this.isGameOver = true;
+    } else {
+      throw new Error("Game is over");
     }
   }
 

@@ -139,5 +139,9 @@ describe("Hand", () => {
     it("Throws an error if hand is 'bust' and hitMe is called", () => {
       expect(() => bustHand.hitMe()).toThrow("Game is over");
     });
+
+    it("Throws an error if hand is 'bust' and stand is called", () => {
+      expect(() => bustHand.stand()).toThrow("Game is over");
+    });
   });
 });
