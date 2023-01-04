@@ -6,6 +6,10 @@ class Hand {
     this.isGameOver = false;
     this.softAces = []; 
   }
+
+  hitMe() {
+    
+  }
 }
 
 module.exports = Hand;

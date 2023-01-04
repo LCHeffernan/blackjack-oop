@@ -27,5 +27,9 @@ describe("Hand", () => {
     it("isGameOver is false", () => {
       expect(hand.isGameOver).toEqual(false);
     });
+
+    it("hitMe is a method", () => {
+      expect(typeof hand.hitMe).toBe("function");
+    });
   });
 });
