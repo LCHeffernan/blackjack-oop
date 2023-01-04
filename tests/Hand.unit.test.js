@@ -68,6 +68,8 @@ describe("Hand", () => {
     });
 
     it("Increases the player's hand by 1", () => {
+        hand.hitMe();
+        hand.hitMe();
         const startingNumberOfCards = hand.playerHand.length;
         hand.hitMe();
         const numberOfCardsAfterHitMe = hand.playerHand.length;
