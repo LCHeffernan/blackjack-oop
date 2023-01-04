@@ -45,4 +45,13 @@ describe("Card", () => {
       expect(aceCard.cardValue).toEqual(11);
     });
   });
+
+  describe("calculateValue method", () => {
+    it("cardValue of ace is 1 when calculateValue is called with 'hard'", () => {
+      const aceCard = new Card("A", "Mock");
+      aceCard.cardValue = aceCard.calculateValue("hard");
+
+      expect(aceCard.cardValue).toEqual(1);
+    });
+  });
 });

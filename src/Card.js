@@ -5,10 +5,13 @@ class Card {
     this.cardValue = this.calculateValue();
   }
 
-  calculateValue() {
+  calculateValue(aceChoice) {
     const rank = this.cardRank;
     if (rank === "A") {
-      return 11;
+      if (aceChoice === "hard") {
+        return 1; // hard means ace is scored as 1.
+      }
+      return 11; // or ace is scored as 11.
     }
     if (rank === "J" || rank === "Q" || rank === "K") {
       return 10;
