@@ -31,6 +31,10 @@ describe("Hand", () => {
     it("hitMe is a method", () => {
       expect(typeof hand.hitMe).toBe("function");
     });
+
+    it("stand is a method", () => {
+      expect(typeof hand.stand).toBe("function");
+    });
   });
 
   let setUpMocks;
@@ -79,7 +83,7 @@ describe("Hand", () => {
 
     it("Updates the player's score", () => {
       const score = hand.playerHand.reduce((a, b) => a + b.cardValue, 0);
-      
+
       expect(hand.playerScore).toEqual(score);
     });
   });

@@ -13,6 +13,10 @@ class Hand {
     this.playerHand.push(cardReceived);
     this.playerScore += cardReceived.cardValue;
   }
+
+  stand() {
+    
+  }
 }
 
 module.exports = Hand;
