@@ -13,7 +13,23 @@ class Deck {
     const cards = [];
     suits.forEach((suit) => {
       for (let i = 1; i <= 13; i += 1) {
-        const rank = i.toString();
+        let rank;
+        switch (i) {
+          case 1:
+            rank = "A";
+            break;
+          case 11:
+            rank = "J";
+            break;
+          case 12:
+            rank = "Q";
+            break;
+          case 13:
+            rank = "K";
+            break;
+          default:
+            rank = i.toString();
+        }
         const card = new Card(rank, suit);
         cards.push(card);
       }

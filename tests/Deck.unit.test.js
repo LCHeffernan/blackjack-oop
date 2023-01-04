@@ -44,6 +44,29 @@ describe("Deck", () => {
       sortedSuits.forEach((sortedSuit) =>
         expect(sortedSuit.length).toEqual(13)
       );
-    })
+    });
+
+    it("There are 4 of each rank", () => {
+      const ranks = [
+        "A",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "J",
+        "Q",
+        "K",
+      ];
+      const sortedRanks = ranks.map((rank) =>
+        unshuffledDeck.filter((card) => card.cardRank === rank)
+      );
+
+      sortedRanks.forEach((sortedRank) => expect(sortedRank.length).toEqual(4));
+    });
   });
 });
