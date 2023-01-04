@@ -16,7 +16,11 @@ describe("Hand", () => {
     });
 
     it("playerScore is 0", () => {
-        expect(hand.playerScore).toEqual(0);
-      })
+      expect(hand.playerScore).toEqual(0);
+    });
+
+    it("isHandValid is true", () => {
+      expect(hand.isHandValid).toEqual(true);
+    });
   });
 });
