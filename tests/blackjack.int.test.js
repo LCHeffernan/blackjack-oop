@@ -1,5 +1,6 @@
 const Deck = require("../src/Deck.js");
 const Dealer = require("../src/Dealer.js");
+const Hand = require("../src/Hand.js");
 
 describe("Integration tests", () => {
   describe("Dealer's deck has been populated correctly", () => {
@@ -48,6 +49,28 @@ describe("Integration tests", () => {
       );
 
       sortedRanks.forEach((sortedRank) => expect(sortedRank.length).toEqual(4));
+    });
+  });
+
+  describe("Game play with full deck", () => {
+    let deck;
+    let dealer;
+    let hand;
+
+    beforeEach(() => {
+      deck = new Deck();
+      deck.initiateDeck();
+      dealer = new Dealer(deck);
+      hand = new Hand(dealer);
+      hand.hitMe();
+      hand.hitMe();
+    });
+
+    it("Hand is valid and is scored correctly", () => {
+      expect(hand.isHandValid).toEqual(true);
+      expect(hand.playerScore).toEqual(
+        hand.playerHand[0].cardValue + hand.playerHand[1].cardValue
+      );
     });
   });
 });
