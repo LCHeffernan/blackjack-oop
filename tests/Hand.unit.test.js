@@ -14,5 +14,9 @@ describe("Hand", () => {
     it("playerHand is an empty array", () => {
       expect(hand.playerHand.length).toEqual(0);
     });
+
+    it("playerScore is 0", () => {
+        expect(hand.playerScore).toEqual(0);
+      })
   });
 });
