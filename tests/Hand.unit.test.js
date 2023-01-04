@@ -135,5 +135,9 @@ describe("Hand", () => {
       expect(bustHand.isHandValid).toEqual(false);
       expect(bustHand.isGameOver).toEqual(true);
     });
+
+    it("Throws an error if hand is 'bust' and hitMe is called", () => {
+      expect(() => bustHand.hitMe()).toThrow("Game is over");
+    });
   });
 });

@@ -9,10 +9,14 @@ class Hand {
   }
 
   hitMe() {
-    const cardReceived = this.dealer.dealCard();
-    this.playerHand.push(cardReceived);
-    this.playerScore += cardReceived.cardValue;
-    this.checkHandIsValid();
+    if (!this.isGameOver) {
+      const cardReceived = this.dealer.dealCard();
+      this.playerHand.push(cardReceived);
+      this.playerScore += cardReceived.cardValue;
+      this.checkHandIsValid();
+    } else {
+      throw new Error("Game is over");
+    }
   }
 
   stand() {
