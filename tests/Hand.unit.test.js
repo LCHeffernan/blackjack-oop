@@ -76,5 +76,11 @@ describe("Hand", () => {
       expect(hand.playerHand.length).toEqual(startingNumberOfCards + 1);
       expect(hand.playerHand[2]).not.toEqual(hand.playerHand[1]);
     });
+
+    it("Updates the player's score", () => {
+      const score = hand.playerHand.reduce((a, b) => a + b.cardValue, 0);
+      
+      expect(hand.playerScore).toEqual(score);
+    });
   });
 });
