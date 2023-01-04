@@ -163,6 +163,7 @@ describe("Hand", () => {
       twoCardHand.hitMe();
       
       expect(twoCardHand.playerScore).toEqual(21);
+      expect(twoCardHand.playerHand.length).toEqual(2);
       expect(twoCardHand.isHandValid).toEqual(true);
       expect(twoCardHand.isGameOver).toEqual(true);
     });
