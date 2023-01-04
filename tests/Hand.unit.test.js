@@ -190,4 +190,90 @@ describe("Hand", () => {
       expect(twoCardHand.isGameOver).toEqual(false);
     });
   });
+
+  let calculateCardValueMockFn;
+  beforeAll(() => {
+    calculateCardValueMockFn = jest.fn((param) => (param === "hard" ? 1 : 11));
+  });
+
+  describe("3 card hand specific cases", () => {
+    it("Scores an hand of king, queen and an ace as 21", () => {
+      const threeCards = [
+        { rank: "K", value: 10 },
+        { rank: "Q", value: 10 },
+        { rank: "A", value: 11 },
+      ].map((card) => {
+        return {
+          cardRank: card.rank,
+          cardSuit: "Mock",
+          cardValue: card.value,
+          calculateValue: calculateCardValueMockFn,
+        };
+      });
+      const threeCardHand = setUpMocks(threeCards);
+      threeCardHand.hitMe();
+      threeCardHand.hitMe();
+      threeCardHand.hitMe();
+
+      expect(threeCardHand.playerScore).toEqual(21);
+      expect(threeCardHand.playerHand[2].calculateValue).toHaveBeenCalledWith(
+        "hard"
+      );
+      expect(threeCardHand.isHandValid).toEqual(true);
+      expect(threeCardHand.isGameOver).toEqual(true);
+      expect(() => threeCardHand.hitMe()).toThrow("Game is over");
+    });
+
+    it("Scores an hand of two aces and a 9 as 21", () => {
+      const threeCards = [
+        { rank: "A", value: 11 },
+        { rank: "A", value: 11 },
+        { rank: 9, value: 9 },
+      ].map((card) => {
+        return {
+          cardRank: card.rank,
+          cardSuit: "Mock",
+          cardValue: card.value,
+          calculateValue: calculateCardValueMockFn,
+        };
+      });
+      const threeCardHand = setUpMocks(threeCards);
+      threeCardHand.hitMe();
+      threeCardHand.hitMe();
+      threeCardHand.hitMe();
+
+      expect(threeCardHand.playerScore).toEqual(21);
+      expect(threeCardHand.playerHand[0].calculateValue).toHaveBeenCalledWith(
+        "hard"
+      );
+      expect(threeCardHand.isHandValid).toEqual(true);
+      expect(threeCardHand.isGameOver).toEqual(true);
+      expect(() => threeCardHand.hitMe()).toThrow("Game is over");
+    });
+
+    it("Scores an hand of three aces as 13", () => {
+      const threeCards = [{}, {}, {}].map(() => {
+        return {
+          cardRank: "A",
+          cardSuit: "Mock",
+          cardValue: 11,
+          calculateValue: calculateCardValueMockFn,
+        };
+      });
+      const threeCardHand = setUpMocks(threeCards);
+      threeCardHand.hitMe();
+      threeCardHand.hitMe();
+      threeCardHand.hitMe();
+
+      expect(threeCardHand.playerScore).toEqual(13);
+      expect(threeCardHand.playerHand[0].calculateValue).toHaveBeenCalledWith(
+        "hard"
+      );
+      expect(threeCardHand.playerHand[1].calculateValue).toHaveBeenCalledWith(
+        "hard"
+      );
+      expect(threeCardHand.isHandValid).toEqual(true);
+      expect(threeCardHand.isGameOver).toEqual(false);
+    });
+  });
 });
