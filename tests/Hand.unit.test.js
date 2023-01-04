@@ -87,4 +87,27 @@ describe("Hand", () => {
       expect(hand.playerScore).toEqual(score);
     });
   });
+
+  describe("Stand", () => {
+    it("isGameOver is true when stand is called and hand is valid", () => {
+      const twoCards = [
+        { rank: "4", value: 4 },
+        { rank: "K", value: 10 },
+      ].map((card) => {
+        return {
+          cardRank: card.rank,
+          cardSuit: "Mock",
+          cardValue: card.value,
+          calculateValue: jest.fn(),
+        };
+      });
+      const hand = setUpMocks(twoCards);
+      hand.hitMe();
+      hand.hitMe();
+      hand.stand();
+
+      expect(hand.isHandValid).toEqual(true);
+      expect(hand.isGameOver).toEqual(true);
+    });
+  });
 });

@@ -15,7 +15,9 @@ class Hand {
   }
 
   stand() {
-    
+    if (this.isHandValid) {
+      this.isGameOver = true;
+    }
   }
 }
 
