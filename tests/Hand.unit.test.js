@@ -27,5 +27,52 @@ describe("Hand", () => {
     it("isGameOver is false", () => {
       expect(hand.isGameOver).toEqual(false);
     });
+
+    it("hitMe is a method", () => {
+      expect(typeof hand.hitMe).toBe("function");
+    });
+  });
+
+  let setUpMocks;
+  beforeEach(() => {
+    setUpMocks = (fakeCards) => {
+      const dealer = {
+        currentDeck: fakeCards,
+        cardJustDealt: {},
+        shuffleDeck: jest.fn(),
+        dealCard: jest.fn(() => fakeCards.shift()),
+      };
+      return new Hand(dealer);
+    };
+  });
+
+  describe("Hit me", () => {
+    let fakeCards = [];
+    const FAKEPACKSIZE = 52;
+    let hand;
+
+    beforeEach(() => {
+      for (let i = 1; i <= FAKEPACKSIZE; i++) {
+        fakeCards.push({
+          cardRank: i,
+          cardSuit: "Mock",
+          cardValue: i,
+          calculateValue: jest.fn(),
+        });
+      }
+      hand = setUpMocks(fakeCards);
+    });
+
+    afterEach(() => {
+      fakeCards = [];
+    });
+
+    it("Increases the player's hand by 1", () => {
+        const startingNumberOfCards = hand.playerHand.length;
+        hand.hitMe();
+        const numberOfCardsAfterHitMe = hand.playerHand.length;
+  
+        expect(numberOfCardsAfterHitMe).toEqual(startingNumberOfCards + 1);
+      });
   });
 });

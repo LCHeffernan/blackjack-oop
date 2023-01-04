@@ -1,10 +1,16 @@
 class Hand {
-  constructor() {
+  constructor(dealer) {
+    this.dealer = dealer;
     this.playerHand = [];
     this.playerScore = 0;
     this.isHandValid = true;
     this.isGameOver = false;
-    this.softAces = []; 
+    this.softAces = [];
+  }
+
+  hitMe() {
+    const cardReceived = this.dealer.dealCard();
+    this.playerHand.push(cardReceived);
   }
 }
 
