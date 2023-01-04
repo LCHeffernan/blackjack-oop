@@ -7,6 +7,9 @@ class Card {
 
   calculateValue() {
     const rank = this.cardRank;
+    if (rank === "A") {
+      return 11;
+    }
     if (rank === "J" || rank === "Q" || rank === "K") {
       return 10;
     }

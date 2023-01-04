@@ -23,7 +23,7 @@ describe("Card", () => {
       expect(typeof card.calculateValue).toBe("function");
     });
   });
-  
+
   describe("Ace and picture cards", () => {
     it("Picture card has rank Q, suit 'Mock' and value 10", () => {
       const pictureRank = "Q";
@@ -33,6 +33,16 @@ describe("Card", () => {
       expect(pictureCard.cardRank).toEqual(pictureRank);
       expect(pictureCard.cardSuit).toEqual(mockSuit);
       expect(pictureCard.cardValue).toEqual(10);
+    });
+
+    it("Ace card has rank A, suit 'Mock' and value 11 upon card initiation", () => {
+      const aceRank = "A";
+      const mockSuit = "Mock";
+      const aceCard = new Card(aceRank, mockSuit);
+
+      expect(aceCard.cardRank).toEqual(aceRank);
+      expect(aceCard.cardSuit).toEqual(mockSuit);
+      expect(aceCard.cardValue).toEqual(11);
     });
   });
 });
