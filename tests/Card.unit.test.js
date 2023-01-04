@@ -16,6 +16,7 @@ describe("Card", () => {
     it(`Number card has rank 3`, () => {
       expect(card.cardRank).toEqual(rank);
       expect(card.cardSuit).toEqual(suit);
+      expect(card.cardValue).toEqual(+rank);
     });
 
     it("calculateValue is a method", () => {
