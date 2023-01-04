@@ -114,4 +114,26 @@ describe("Hand", () => {
       expect(hand.isGameOver).toEqual(true);
     });
   });
+
+  describe("Hand is bust", () => {
+    let bustHand;
+
+    beforeEach(() => {
+      const ten = {
+        cardRank: 10,
+        cardSuit: "Mock",
+        cardValue: 10,
+        calculateValue: jest.fn(),
+      };
+      bustHand = setUpMocks([ten, ten, ten]);
+      bustHand.hitMe();
+      bustHand.hitMe();
+      bustHand.hitMe();
+    });
+
+    it("isHandValid is false and isGameOver is true", () => {
+      expect(bustHand.isHandValid).toEqual(false);
+      expect(bustHand.isGameOver).toEqual(true);
+    });
+  });
 });

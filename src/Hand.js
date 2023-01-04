@@ -12,6 +12,7 @@ class Hand {
     const cardReceived = this.dealer.dealCard();
     this.playerHand.push(cardReceived);
     this.playerScore += cardReceived.cardValue;
+    this.checkHandIsValid();
   }
 
   stand() {
@@ -21,6 +22,10 @@ class Hand {
   }
 
   checkHandIsValid() {
+    if (this.playerScore > 21) {
+      this.isHandValid = false;
+      this.isGameOver = true;
+    }
   }
 }
 
