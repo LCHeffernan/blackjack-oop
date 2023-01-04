@@ -35,6 +35,10 @@ describe("Hand", () => {
     it("stand is a method", () => {
       expect(typeof hand.stand).toBe("function");
     });
+
+    it("checkHanIsValid is a method", () => {
+      expect(typeof hand.checkHandIsValid).toBe("function");
+    });
   });
 
   let setUpMocks;

@@ -19,6 +19,9 @@ class Hand {
       this.isGameOver = true;
     }
   }
+
+  checkHandIsValid() {
+  }
 }
 
 module.exports = Hand;
