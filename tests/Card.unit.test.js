@@ -4,7 +4,7 @@ describe("Card", () => {
   describe("Card instantiation", () => {
     let card;
     const rank = "3";
-    const suit = "Mock"
+    const suit = "Mock";
 
     beforeEach(() => {
       card = new Card(rank, suit);
@@ -14,8 +14,12 @@ describe("Card", () => {
     });
 
     it(`Number card has rank 3`, () => {
-        expect(card.cardRank).toEqual(rank);
-        expect(card.cardSuit).toEqual(suit);
-      });
+      expect(card.cardRank).toEqual(rank);
+      expect(card.cardSuit).toEqual(suit);
+    });
+
+    it("calculateValue is a method", () => {
+      expect(typeof card.calculateValue).toBe("function");
+    });
   });
 });
