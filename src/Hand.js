@@ -12,6 +12,9 @@ class Hand {
     if (!this.isGameOver) {
       const cardReceived = this.dealer.dealCard();
       this.playerHand.push(cardReceived);
+      if (cardReceived.cardRank === "A") {
+        this.softAces.push(cardReceived);
+      }
       this.playerScore += cardReceived.cardValue;
       this.checkHandIsValid();
     } else {

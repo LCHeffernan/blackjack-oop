@@ -167,5 +167,21 @@ describe("Hand", () => {
       expect(twoCardHand.isHandValid).toEqual(true);
       expect(twoCardHand.isGameOver).toEqual(true);
     });
+
+    it("Pushes aces in softAces array", () => {
+        const twoCards = [{}, {}].map(() => {
+          return {
+            cardRank: "A",
+            cardSuit: "Mock",
+            cardValue: 11,
+            calculateValue: jest.fn((param) => (param === "hard" ? 1 : 11)),
+          };
+        });
+        const twoCardHand = setUpMocks(twoCards);
+        twoCardHand.hitMe();
+        twoCardHand.hitMe();
+       
+        expect(twoCardHand.softAces.length).toEqual(2);
+      });
   });
 });
