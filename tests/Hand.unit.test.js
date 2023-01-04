@@ -22,5 +22,9 @@ describe("Hand", () => {
     it("isHandValid is true", () => {
       expect(hand.isHandValid).toEqual(true);
     });
+
+    it("isGameOver is false", () => {
+      expect(hand.isGameOver).toEqual(false);
+    });
   });
 });

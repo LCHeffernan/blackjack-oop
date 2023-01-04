@@ -3,6 +3,7 @@ class Hand {
     this.playerHand = [];
     this.playerScore = 0;
     this.isHandValid = true;
+    this.isGameOver = false;
   }
 }
 
