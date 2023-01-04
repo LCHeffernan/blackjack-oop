@@ -161,27 +161,33 @@ describe("Hand", () => {
       const twoCardHand = setUpMocks(twoCards);
       twoCardHand.hitMe();
       twoCardHand.hitMe();
-      
+
       expect(twoCardHand.playerScore).toEqual(21);
       expect(twoCardHand.playerHand.length).toEqual(2);
       expect(twoCardHand.isHandValid).toEqual(true);
       expect(twoCardHand.isGameOver).toEqual(true);
     });
 
-    it("Pushes aces in softAces array", () => {
-        const twoCards = [{}, {}].map(() => {
-          return {
-            cardRank: "A",
-            cardSuit: "Mock",
-            cardValue: 11,
-            calculateValue: jest.fn((param) => (param === "hard" ? 1 : 11)),
-          };
-        });
-        const twoCardHand = setUpMocks(twoCards);
-        twoCardHand.hitMe();
-        twoCardHand.hitMe();
-       
-        expect(twoCardHand.softAces.length).toEqual(2);
+    it("Pushes aces in softAces array, removes them is their value is re-evaluated to 1 and updates score", () => {
+      const twoCards = [{}, {}].map(() => {
+        return {
+          cardRank: "A",
+          cardSuit: "Mock",
+          cardValue: 11,
+          calculateValue: jest.fn((param) => (param === "hard" ? 1 : 11)),
+        };
       });
+      const twoCardHand = setUpMocks(twoCards);
+      twoCardHand.hitMe();
+      twoCardHand.hitMe();
+
+      expect(twoCardHand.softAces.length).toEqual(1);
+      expect(twoCardHand.playerScore).toEqual(12);
+      expect(twoCardHand.playerHand[0].calculateValue).toHaveBeenCalledWith(
+        "hard"
+      );
+      expect(twoCardHand.isHandValid).toEqual(true);
+      expect(twoCardHand.isGameOver).toEqual(false);
+    });
   });
 });

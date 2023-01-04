@@ -31,9 +31,16 @@ class Hand {
   }
 
   checkHandIsValid() {
+    const aces = this.softAces;
     if (this.playerScore > 21) {
-      this.isHandValid = false;
-      this.isGameOver = true;
+      if (aces.length > 0) {
+        aces[0].cardValue = aces[0].calculateValue("hard");
+        aces.shift();
+        this.playerScore -= 10;
+      } else {
+        this.isHandValid = false;
+        this.isGameOver = true;
+      }
     }
     if (this.playerScore === 21) {
       this.isGameOver = true;
