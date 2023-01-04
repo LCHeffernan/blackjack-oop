@@ -50,6 +50,7 @@ describe("Hand", () => {
     let fakeCards = [];
     const FAKEPACKSIZE = 52;
     let hand;
+    let startingNumberOfCards;
 
     beforeEach(() => {
       for (let i = 1; i <= FAKEPACKSIZE; i++) {
@@ -61,20 +62,19 @@ describe("Hand", () => {
         });
       }
       hand = setUpMocks(fakeCards);
+      hand.hitMe();
+      hand.hitMe();
+      startingNumberOfCards = hand.playerHand.length;
+      hand.hitMe();
     });
 
     afterEach(() => {
       fakeCards = [];
     });
 
-    it("Increases the player's hand by 1", () => {
-        hand.hitMe();
-        hand.hitMe();
-        const startingNumberOfCards = hand.playerHand.length;
-        hand.hitMe();
-        const numberOfCardsAfterHitMe = hand.playerHand.length;
-  
-        expect(numberOfCardsAfterHitMe).toEqual(startingNumberOfCards + 1);
-      });
+    it("Increases the player's hand by 1 and is a different card from the one dealt before", () => {
+      expect(hand.playerHand.length).toEqual(startingNumberOfCards + 1);
+      expect(hand.playerHand[2]).not.toEqual(hand.playerHand[1]);
+    });
   });
 });
