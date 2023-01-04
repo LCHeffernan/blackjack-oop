@@ -30,8 +30,8 @@ describe("Dealer", () => {
     });
 
     it("dealCard is a method", () => {
-        expect(typeof dealer.dealCard).toBe("function");
-      });
+      expect(typeof dealer.dealCard).toBe("function");
+    });
   });
 
   describe("Deck methods", () => {
@@ -75,6 +75,14 @@ describe("Dealer", () => {
       expect(shuffledDeck.map((card) => card.cardRank)).not.toEqual(
         unshuffledDeck.map((card) => card.cardRank)
       );
+    });
+
+    it("One card is dealt at a time", () => {
+      const firstCardInDeck = shuffledDeck[0];
+      dealer.dealCard();
+
+      expect(shuffledDeck.length).toEqual(51);
+      expect(dealer.cardJustDealt).toEqual(firstCardInDeck);
     });
   });
 });

@@ -10,6 +10,8 @@ class Dealer {
   }
 
   dealCard() {
+    this.cardJustDealt = this.currentDeck.shift();
+    return this.cardJustDealt;
   }
 }
 module.exports = Dealer;
