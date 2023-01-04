@@ -15,5 +15,16 @@ describe("Integration tests", () => {
     it("Dealer has 52 cards", () => {
       expect(dealer.currentDeck.length).toEqual(52);
     });
+
+    it("There are 13 of each suit", () => {
+      const suits = ["♣️", "♥️", "♠️", "♦️"];
+      const sortedSuits = suits.map((suit) =>
+        dealer.currentDeck.filter((card) => card.cardSuit === suit)
+      );
+
+      sortedSuits.forEach((sortedSuit) =>
+        expect(sortedSuit.length).toEqual(13)
+      );
+    });
   });
 });
