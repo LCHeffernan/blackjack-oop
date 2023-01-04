@@ -12,6 +12,10 @@ class Hand {
     const cardReceived = this.dealer.dealCard();
     this.playerHand.push(cardReceived);
   }
+
+  hitMe() {
+    
+  }
 }
 
 module.exports = Hand;
