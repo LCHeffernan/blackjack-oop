@@ -223,5 +223,32 @@ describe("Hand", () => {
       expect(threeCardHand.isGameOver).toEqual(true);
       expect(() => threeCardHand.hitMe()).toThrow("Game is over");
     });
+
+    it("Scores an hand of two aces and a 9 as 21", () => {
+      const threeCards = [
+        { rank: "A", value: 11 },
+        { rank: "A", value: 11 },
+        { rank: 9, value: 9 },
+      ].map((card) => {
+        return {
+          cardRank: card.rank,
+          cardSuit: "Mock",
+          cardValue: card.value,
+          calculateValue: calculateCardValueMockFn,
+        };
+      });
+      const threeCardHand = setUpMocks(threeCards);
+      threeCardHand.hitMe();
+      threeCardHand.hitMe();
+      threeCardHand.hitMe();
+
+      expect(threeCardHand.playerScore).toEqual(21);
+      expect(threeCardHand.playerHand[0].calculateValue).toHaveBeenCalledWith(
+        "hard"
+      );
+      expect(threeCardHand.isHandValid).toEqual(true);
+      expect(threeCardHand.isGameOver).toEqual(true);
+      expect(() => threeCardHand.hitMe()).toThrow("Game is over");
+    });
   });
 });
