@@ -13,7 +13,11 @@ describe("Deck", () => {
     });
 
     it("initiateDeck is a method", () => {
-        expect(typeof deck.initiateDeck).toBe("function");
-      });
+      expect(typeof deck.initiateDeck).toBe("function");
+    });
+
+    it("populateSuit is a method", () => {
+      expect(typeof deck.populateSuit).toBe("function");
+    });
   });
 });

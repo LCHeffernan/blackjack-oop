@@ -3,9 +3,9 @@ class Deck {
     this.cards = [];
   }
 
-  initiateDeck() {
+  initiateDeck() {}
 
-  }
+  populateSuit() {}
 }
 
 module.exports = Deck;
