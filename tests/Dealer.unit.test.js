@@ -20,8 +20,13 @@ describe("Dealer", () => {
       };
       dealer = new Dealer(deck);
     });
+
     it("Can be instantiated", () => {
       expect(dealer).toBeInstanceOf(Object);
+    });
+
+    it("shuffleDeck is a method", () => {
+      expect(typeof dealer.shuffleDeck).toBe("function");
     });
   });
 });
