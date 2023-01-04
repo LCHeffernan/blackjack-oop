@@ -28,6 +28,10 @@ describe("Dealer", () => {
     it("shuffleDeck is a method", () => {
       expect(typeof dealer.shuffleDeck).toBe("function");
     });
+
+    it("dealCard is a method", () => {
+        expect(typeof dealer.dealCard).toBe("function");
+      });
   });
 
   describe("Deck methods", () => {
