@@ -250,5 +250,30 @@ describe("Hand", () => {
       expect(threeCardHand.isGameOver).toEqual(true);
       expect(() => threeCardHand.hitMe()).toThrow("Game is over");
     });
+
+    it("Scores an hand of three aces as 13", () => {
+      const threeCards = [{}, {}, {}].map(() => {
+        return {
+          cardRank: "A",
+          cardSuit: "Mock",
+          cardValue: 11,
+          calculateValue: calculateCardValueMockFn,
+        };
+      });
+      const threeCardHand = setUpMocks(threeCards);
+      threeCardHand.hitMe();
+      threeCardHand.hitMe();
+      threeCardHand.hitMe();
+
+      expect(threeCardHand.playerScore).toEqual(13);
+      expect(threeCardHand.playerHand[0].calculateValue).toHaveBeenCalledWith(
+        "hard"
+      );
+      expect(threeCardHand.playerHand[1].calculateValue).toHaveBeenCalledWith(
+        "hard"
+      );
+      expect(threeCardHand.isHandValid).toEqual(true);
+      expect(threeCardHand.isGameOver).toEqual(false);
+    });
   });
 });
