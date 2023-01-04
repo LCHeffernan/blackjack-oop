@@ -32,6 +32,9 @@ class Hand {
       this.isHandValid = false;
       this.isGameOver = true;
     }
+    if (this.playerScore === 21) {
+      this.isGameOver = true;
+    }
   }
 }
 

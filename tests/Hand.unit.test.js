@@ -144,4 +144,27 @@ describe("Hand", () => {
       expect(() => bustHand.stand()).toThrow("Game is over");
     });
   });
+
+  describe("Opening hand cases", () => {
+    it("Scores one ace and one king as 21 and game is over with valid hand", () => {
+      const twoCards = [
+        { rank: "A", value: 11 },
+        { rank: "K", value: 10 },
+      ].map((card) => {
+        return {
+          cardRank: card.rank,
+          cardSuit: "Mock",
+          cardValue: card.value,
+          calculateValue: jest.fn(),
+        };
+      });
+      const twoCardHand = setUpMocks(twoCards);
+      twoCardHand.hitMe();
+      twoCardHand.hitMe();
+      
+      expect(twoCardHand.playerScore).toEqual(21);
+      expect(twoCardHand.isHandValid).toEqual(true);
+      expect(twoCardHand.isGameOver).toEqual(true);
+    });
+  });
 });
