@@ -11,8 +11,9 @@ describe("Hand", () => {
       expect(hand).toBeInstanceOf(Object);
     });
 
-    it("playerHand is an empty array", () => {
+    it("playerHand and softAces are empty arrays", () => {
       expect(hand.playerHand.length).toEqual(0);
+      expect(hand.softAces.length).toEqual(0);
     });
 
     it("playerScore is 0", () => {
