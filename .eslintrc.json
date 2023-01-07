@@ -1,17 +1,13 @@
 {
-    "env": {
-        "node": true,
-        "commonjs": true,
-        "jest": true
-    },
-    "extends": [
-        "eslint:recommended"
-    ],
-    "overrides": [
-    ],
-    "parserOptions": {
-        "ecmaVersion": "latest"
-    },
-    "rules": {
-    }
+  "env": {
+    "node": true,
+    "commonjs": true,
+    "jest": true
+  },
+  "extends": ["eslint:recommended"],
+  "overrides": [],
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "rules": {}
 }
