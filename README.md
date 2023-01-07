@@ -25,7 +25,9 @@ ___
 |Aim|To score 21 or as close as possible. A score of 21 with 2 cards is called 'blackjack'.|
 |Scoring|The cards 2-10 are worth their face value, the picture cards (Jack, Queen and King) are worth 10 each and the ace is worth either 11 or 1. The ace is worth 11 initially but if this would put the player's score over 21 then it gets re-evaulated to a 1.|
 |Game play|The player is dealt an opening hand of 2 cards. They then have two options, to 'hit' and receive another card or to 'stand' and have their final score evaluated. If their score is over 21 they are 'bust' and the game is over.|
+
 If you would like to play a game you can run the program in node REPL using the command ```node```. Run the commands in the following order.
+
 |command|what it does|
 |------|------|
 |```const Deck = require("./src/Deck.js");```|Import Deck into REPL|
@@ -37,18 +39,21 @@ If you would like to play a game you can run the program in node REPL using the 
 |```const hand = new Hand(dealer);```|Create a hand|
 |```hand.hitMe();```|Deal first card|
 |```hand.hitMe();```|Deal second card|
+
 Once the above commands have been run, the game is ready to play. You can interact choosing any of the following commands.
+
 |command|what it does|
 |------|------|
 |```hand.playerHand;```|View the cards in your hand|
 |```hand.playerScore;```|View your current score|
 |```hand.hitMe();```|To receieve another card|
 |```hand.stand();```|To finish the game with your current hand|
+
 Game over - Once the game is over you cannot continue to interact with the app. Attempting to 'hit' or 'stand' will result in an error being thrown. The game is over in the following situations:
 * Your hand goes 'bust' (score goes over 21)
 * You choose to stand with your current cards
 * You reach the score of 21
-<img src="/images/Screenshot-REPL.png" width="203" height="269" alt="Screenshot of app being used in node REPL" title="App being used in node REPL"/>
+<img src="/images/Screenshot-REPL.png" width="271" height="359" alt="Screenshot of app being used in node REPL" title="App being used in node REPL"/>
 
 ___
 ## Future plans.
