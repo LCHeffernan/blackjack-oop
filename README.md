@@ -20,8 +20,8 @@ This project has the following dependencies: Jest and Node. To download the proj
 
 ## Tests.
 
-- To run the unit tests use the command `npm run unit`
-- To run the integration tests use the command `npm run int`
+- To run the unit tests, use the command `npm run unit`
+- To run the integration tests, use the command `npm run int`
 - To run all test and view the coverage run the command `npm test`
 
 ---
@@ -31,10 +31,10 @@ This project has the following dependencies: Jest and Node. To download the proj
 |           | Blackjack rules                                                                                                                                                                                                                                             |
 | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Aim       | To score 21 or as close as possible. A score of 21 with 2 cards is called 'blackjack'.                                                                                                                                                                      |
-| Scoring   | The cards 2-10 are worth their face value, the picture cards (Jack, Queen and King) are worth 10 each and the ace is worth either 11 or 1. The ace is worth 11 initially but if this would put the player's score over 21 then it gets re-evaulated to a 1. |
-| Game play | The player is dealt an opening hand of 2 cards. They then have two options, to 'hit' and receive another card or to 'stand' and have their final score evaluated. If their score is over 21 they are 'bust' and the game is over.                           |
+| Scoring   | The cards 2-10 are worth their face value, the picture cards (Jack, Queen, and King) are worth 10 each and the ace is worth either 11 or 1. The ace is worth 11 initially but if this would put the player's score over 21 then it gets re-evaluated to a 1. |
+| Game play | The player is dealt an opening hand of 2 cards. They then have two options, to 'hit' and receive another card or to 'stand' and have their final score evaluated. If their score is over 21, they are 'bust' and the game is over.                           |
 
-If you would like to play a game you can run the program in node REPL using the command `node`. Run the commands in the following order.
+If you would like to play a game, you can run the program in node REPL using the command `node`. Run the commands in the following order.
 
 | command                                       | what it does                              |
 | --------------------------------------------- | ----------------------------------------- |
@@ -54,7 +54,7 @@ Once the above commands have been run, the game is ready to play. You can intera
 | ------------------- | ----------------------------------------- |
 | `hand.playerHand;`  | View the cards in your hand               |
 | `hand.playerScore;` | View your current score                   |
-| `hand.hitMe();`     | To receieve another card                  |
+| `hand.hitMe();`     | To receive another card                  |
 | `hand.stand();`     | To finish the game with your current hand |
 
 Game over - Once the game is over you cannot continue to interact with the app. Attempting to 'hit' or 'stand' will result in an error being thrown. The game is over in the following situations:
