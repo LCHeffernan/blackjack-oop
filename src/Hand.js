@@ -6,6 +6,20 @@ class Hand {
     this.isHandValid = true;
     this.isGameOver = false;
     this.softAces = [];
+    this.splitHand = false;
+  }
+
+  splitCurrentHand() {
+      const splitCard = this.playerHand.shift();
+      if (splitCard.cardRank === "A") {
+        // search softAces array to remove the ace
+        this.softAces.filter(card => {
+          card === splitCard;
+        })
+      }
+      this.playerScore -= splitCard.cardValue;
+      this.splitHand = true;
+      this.checkHandIsValid();
   }
 
   hitMe() {

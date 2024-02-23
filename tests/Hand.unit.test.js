@@ -1,4 +1,5 @@
 const Hand = require("../src/Hand.js");
+const SplitHand = require("../src/SplitHand.js");
 
 describe("Hand", () => {
   describe("hand instantiation", () => {
@@ -112,6 +113,38 @@ describe("Hand", () => {
 
       expect(hand.isHandValid).toEqual(true);
       expect(hand.isGameOver).toEqual(true);
+    });
+  });
+
+  describe("Split", () => {
+    it("When split is called a second hand is created", () => {
+      let sameValueHand;
+      const sameValueCards = [
+        { rank: 5, value: 5 },
+        { rank: 5, value: 5 },
+      ].map((card) => {
+        return {
+          cardRank: card.rank,
+          cardSuit: "Mock",
+          cardValue: card.value,
+          calculateValue: jest.fn(),
+        };
+      });
+      sameValueHand = setUpMocks(sameValueCards);
+      sameValueHand.hitMe();
+      sameValueHand.hitMe();
+      const splitCard = sameValueHand.playerHand[0];
+      const secondHand = new SplitHand(
+        sameValueCards,
+        sameValueHand.playerHand[0]
+      );
+      sameValueHand.splitCurrentHand();
+
+      expect(sameValueHand.playerHand.length).toEqual(1);
+      expect(sameValueHand.splitHand).toEqual(true);
+      expect(secondHand.playerHand.length).toEqual(1);
+      expect(secondHand.splitHand).toEqual(true);
+      expect(secondHand.playerHand[0]).toEqual(splitCard);
     });
   });
 
