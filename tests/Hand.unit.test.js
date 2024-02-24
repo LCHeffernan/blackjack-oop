@@ -136,15 +136,75 @@ describe("Hand", () => {
       const splitCard = sameValueHand.playerHand[0];
       const secondHand = new SplitHand(
         sameValueCards,
-        sameValueHand.playerHand[0]
+        sameValueHand
       );
-      sameValueHand.splitCurrentHand();
 
       expect(sameValueHand.playerHand.length).toEqual(1);
       expect(sameValueHand.splitHand).toEqual(true);
       expect(secondHand.playerHand.length).toEqual(1);
       expect(secondHand.splitHand).toEqual(true);
       expect(secondHand.playerHand[0]).toEqual(splitCard);
+    });
+
+    it("soft ace is removed from array when hand is split", () => {
+      let sameValueHand;
+      calculateCardValueMockFn = jest.fn((param) => (param === "hard" ? 1 : 11));
+      const sameValueCards = [
+        { rank: "A", value: 11 },
+        { rank: "A", value: 11 },
+      ].map((card) => {
+        return {
+          cardRank: card.rank,
+          cardSuit: "Mock",
+          cardValue: card.value,
+          calculateValue: calculateCardValueMockFn,
+        };
+      });
+      sameValueHand = setUpMocks(sameValueCards);
+      sameValueHand.hitMe();
+      sameValueHand.hitMe();
+
+      const splitCard = sameValueHand.playerHand[0];
+
+      const secondHand = new SplitHand(
+        sameValueCards,
+        sameValueHand
+      );
+   
+      expect(sameValueHand.playerHand.length).toEqual(1);
+      expect(sameValueHand.splitHand).toEqual(true);
+      expect(secondHand.playerHand.length).toEqual(1);
+      expect(secondHand.splitHand).toEqual(true);
+      expect(secondHand.playerHand[0]).toEqual(splitCard);
+      expect(sameValueHand.softAces.length).toEqual(1);
+      expect(sameValueHand.playerScore).toEqual(11);
+      expect(secondHand.softAces.length).toEqual(1);
+      expect(secondHand.playerScore).toEqual(11);
+    });
+
+    it("Throws an error if split is called when the opening 2 cards have different values", () => {
+      let sameValueHand;
+      const sameValueCards = [
+        { rank: 4, value: 4 },
+        { rank: 5, value: 5 },
+      ].map((card) => {
+        return {
+          cardRank: card.rank,
+          cardSuit: "Mock",
+          cardValue: card.value,
+          calculateValue: jest.fn(),
+        };
+      });
+      sameValueHand = setUpMocks(sameValueCards);
+      sameValueHand.hitMe();
+      sameValueHand.hitMe();
+
+      expect(() => new SplitHand(
+        sameValueCards,
+        sameValueHand
+      )).toThrow(
+        "cards must be of the same value to split the hand"
+      );
     });
   });
 

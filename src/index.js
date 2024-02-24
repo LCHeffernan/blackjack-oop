@@ -11,18 +11,10 @@ const startGame = () => {
   const hand = new Hand(dealer);
   hand.hitMe();
   hand.hitMe();
-
-  splitHand(hand, dealer);
 };
 
 const splitHand = (hand, dealer) => {
-  if (hand.playerHand[0].cardValue === hand.playerHand[1].cardValue) {
-    const secondHand = new SplitHand(dealer, hand.playerHand[0]);
-    hand.splitCurrentHand();
-    return secondHand;
-  } else {
-    console.log("cards must be of the same value to split the hand");
-  }
+  return new SplitHand(dealer, hand);
 };
 
-startGame();
+module.exports = {startGame, splitHand};
